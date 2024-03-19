@@ -21,9 +21,9 @@ public class Principal {
 				temperaturaCel = Integer.parseInt(aux);
 
 				if (temperaturaCel <= -273) {
-					throw new TemperaturaException("No puedes hacer esto esmayao");
+					throw new TemperaturaException("No puedes hacer esto.");
 				}
-				temperaturaFar = temperaturaCel * 9 / 5 + 32;
+				temperaturaFar = temperaturaCel * 9.0 / 5.0 + conversor;
 				System.out.printf("La temperatura en Far es %.2f", temperaturaFar);
 				System.out.println();
 				repetir = true;
