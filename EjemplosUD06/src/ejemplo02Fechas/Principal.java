@@ -13,20 +13,22 @@ public class Principal {
 		Boolean seguir = false;
 		GestionReserva gr = new GestionReserva(LocalDate.now());
 
-		try {
-
-			do {
+		do {
+			try {
 
 				System.out.println("Diga fecha");
 				fecha = sc.nextLine();
 
 				LocalDate fechaR = LocalDate.parse(fecha);
 				gr.hacerReserva(fechaR);
-			} while (!seguir);
+				seguir = true;
 
-		} catch (ExceptionFechaReserva e) {
-			System.out.println(e.getMessage());
-		}
+			} catch (ExceptionFechaReserva e) {
+				System.out.println(e.getMessage());
+			} catch (Exception e) {
+				System.out.println("Diga un dato válido");
+			}
+		} while (!seguir);
 	}
 
 }
