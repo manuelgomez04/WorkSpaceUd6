@@ -9,24 +9,26 @@ public class Principal {
 
 		Scanner sc = new Scanner(System.in);
 
-		String aux, fecha;
+		String fecha;
 		Boolean seguir = false;
-		GestionReserva gr = new GestionReserva(LocalDate.now());
-
+		LocalDate fechaR;
+		GestionReserva gr = new GestionReserva();
 		do {
 			try {
 
-				System.out.println("Diga fecha");
+				System.out.println("Diga una fecha");
 				fecha = sc.nextLine();
 
-				LocalDate fechaR = LocalDate.parse(fecha);
+				fechaR = LocalDate.parse(fecha);
 				gr.hacerReserva(fechaR);
 				seguir = true;
 
 			} catch (ExceptionFechaReserva e) {
 				System.out.println(e.getMessage());
+			} catch (RuntimeException e) {
+				System.out.println("Diga una fecha válida");
 			} catch (Exception e) {
-				System.out.println("Diga un dato válido");
+				System.out.println("Error inesperado");
 			}
 		} while (!seguir);
 	}

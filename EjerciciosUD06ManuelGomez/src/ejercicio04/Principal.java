@@ -23,15 +23,17 @@ public class Principal {
 				aux = sc.nextLine();
 				b = Integer.parseInt(aux);
 
-				if (a + b > 10) {
+				resul = a + b;
+				if (resul > 10) {
 					throw new ExceptionSuma("El resultado es mayor a diez. No se puede realizar la operación");
 				}
 
-				resul = a + b;
 				System.out.println("El resultado es " + resul);
-
+				seguir = true;
 			} catch (ExceptionSuma e) {
 				System.out.println(e.getMessage());
+			} catch (Exception e) {
+				System.out.println("Escribe un número");
 			}
 
 		} while (!seguir);

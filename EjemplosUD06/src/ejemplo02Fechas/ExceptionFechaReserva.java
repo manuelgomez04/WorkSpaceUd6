@@ -1,10 +1,7 @@
 package ejemplo02Fechas;
 
-public class ExceptionFechaReserva extends Exception {
+public class ExceptionFechaReserva extends RuntimeException {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	public ExceptionFechaReserva() {
