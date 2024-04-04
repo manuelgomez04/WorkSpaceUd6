@@ -4,29 +4,31 @@ import java.time.LocalDate;
 
 public class Taller {
 
-	public void comprobarGarantia(Coche c, int anio) {
+	public boolean comprobarGarantia(int aniosGarantia, int anio) throws GarantiaException {
 
-		if (LocalDate.now().getYear() - anio > c.getAniosGarantia()) {
-			throw new GarantiaException("La garantía del coche ha expirado");
-		}
+		if (LocalDate.now().getYear() - anio > aniosGarantia) {
 
-		System.out.println("El coche sigue en garantía");
-	}
-
-	public void precioArreglo(Coche c) {
-
-		if (c.getPrecio() < 0) {
-			throw new PrecioNegativoException("El precio del arreglo no puede ser negativo");
-		}
-		System.out.println("El precio del arreglo es " + c.getPrecio());
-	}
-
-	public void matriculaFormato(Coche c) {
-
-		if (c.getMatricula().matches("(([A-Z]{1,2})(\\d{4})([A-Z]{0,2}))|((E)(\\d{4})([A-Z]{3})")) {
-			System.out.println("Matrícula correcta");
+			throw new GarantiaException("Garantía ha acabado");
 		} else {
-			throw new FormatoMatriculaException();
+			return true;
+		}
+
+	}
+
+	public void precioArreglo(double precio) throws PrecioNegativoException {
+
+		if (precio < 0) {
+			throw new PrecioNegativoException("El precio no puede ser negativo");
+		}
+
+	}
+
+	public void matriculaFormato(String matricula) throws FormatoMatriculaException {
+
+		if (matricula.matches("[0-9]{4}[A-Z]{3}")) {
+
+		} else {
+			throw new FormatoMatriculaException("La matrícula está mal puesta");
 		}
 	}
 

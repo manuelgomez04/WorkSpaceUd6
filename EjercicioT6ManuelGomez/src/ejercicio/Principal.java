@@ -1,5 +1,6 @@
 package ejercicio;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Principal {
@@ -20,6 +21,7 @@ public class Principal {
 			try {
 				System.out.println("Diga matrícula del coche");
 				matricula = sc.nextLine();
+				t.matriculaFormato(matricula);
 
 				System.out.println("Diga nombre del dueño del coche");
 				nombreDueno = sc.nextLine();
@@ -27,6 +29,7 @@ public class Principal {
 				System.out.println("Diga precio del arreglo");
 				aux = sc.nextLine();
 				precoiArreglo = Double.parseDouble(aux);
+				t.precioArreglo(precoiArreglo);
 
 				System.out.println("Diga cuantos años de garantía tiene el coche");
 				aux = sc.nextLine();
@@ -38,26 +41,25 @@ public class Principal {
 				aux = sc.nextLine();
 				anioCompra = Integer.parseInt(aux);
 
-				t.comprobarGarantia(c, anioCompra);
+				if (t.comprobarGarantia(aniosGarantia, anioCompra)) {
+					System.out.println("El coche está en garantía");
+				}
 
 				System.out.println();
-				t.precioArreglo(c);
 
 				System.out.println();
-				t.matriculaFormato(c);
 
 				seguir = true;
 			} catch (GarantiaException e) {
-				System.out.println(e.getMessage());
-
+				System.err.println();
 			} catch (PrecioNegativoException e) {
-				System.err.println(e.getMessage());
+				System.err.println();
 			} catch (FormatoMatriculaException e) {
-				System.err.println(e.getMessage());
+				System.err.println();
+			} catch (InputMismatchException e) {
+				System.err.println();
 			} catch (RuntimeException e) {
-				System.err.println("Inserte dato válido");
-			} catch (Exception e) {
-				System.err.println("Error inesperado");
+				System.err.println();
 			}
 
 		} while (!seguir);
